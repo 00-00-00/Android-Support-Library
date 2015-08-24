@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.ground0.mediacontrollertest.pagerFragments.PagerAdapter;
 
@@ -25,9 +27,11 @@ public class NextActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_burger);
 
+        //Set the custom toolbar as the action bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.burger_toolbar);
         setSupportActionBar(toolbar);
 
+        //Set up the animated burger menu icon on the action bar
         DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
@@ -63,13 +67,26 @@ public class NextActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
 
+
+        /*
+
+
+       Code for the Tabs
+         */
+
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+
+        //Set the title of the tabs in the tab layout
         tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
         tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
         tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        //set up the view pager for the swiping between the tabs
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+
+        //get the adapter for switching between the fragments
         final PagerAdapter adapter = new PagerAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
@@ -90,6 +107,8 @@ public class NextActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     @Override
